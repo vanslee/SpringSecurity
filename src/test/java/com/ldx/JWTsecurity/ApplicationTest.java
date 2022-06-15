@@ -1,5 +1,6 @@
 package com.ldx.JWTsecurity;
 
+import com.ldx.JWTsecurity.mapper.MenuMapper;
 import com.ldx.JWTsecurity.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class ApplicationTest {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private MenuMapper menuMapper;
     @Test
     public void test01() {
         userMapper.selectList(null).forEach(System.out::println);
@@ -25,6 +28,9 @@ public class ApplicationTest {
         System.out.println("matches1 = " + (matches1));
         boolean matches = bCryptPasswordEncoder.matches("123","$2a$10$r9zIC9VI0yqagfB65o1SWeNweegk5aAOJNbtw0POX2RYl4tLp4WUy");
         System.out.println("matches = " + (matches));
-
+    }
+    @Test
+    public void test03() {
+        menuMapper.selectPermsByUserId(1L).stream().forEach(System.out::println);
     }
 }

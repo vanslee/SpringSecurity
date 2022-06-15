@@ -21,7 +21,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
-
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
 
@@ -55,13 +54,11 @@ protected void configure(HttpSecurity http) throws Exception {
 
     //添加过滤器
     http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
     //配置异常处理器
     http.exceptionHandling()
             //配置认证失败处理器
             .authenticationEntryPoint(authenticationEntryPoint)
             .accessDeniedHandler(accessDeniedHandler);
-
     //允许跨域
     http.cors();
 }

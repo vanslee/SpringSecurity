@@ -6,6 +6,8 @@ import com.ldx.JWTsecurity.utils.ResponseResult;
 
 public interface LoginService {
     ResponseResult login(User user);
-//    ResponseResult logout();
+
+    ResponseResult logout();
+
 
 }
