@@ -3,6 +3,7 @@ package com.ldx.JWTsecurity.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ldx.JWTsecurity.mapper.MenuMapper;
+//import com.ldx.JWTsecurity.pojo.CustomUserDetails;
 import com.ldx.JWTsecurity.pojo.CustomUserDetails;
 import com.ldx.JWTsecurity.pojo.User;
 import com.ldx.JWTsecurity.service.UserService;
@@ -31,6 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private UserMapper userMapper;
     @Autowired
     private MenuMapper menuMapper;
+    // 重写该方法就不会使用SpringSecurity提供的默认密码
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 根据用户名查询用户信息
@@ -45,8 +47,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
         // TODO 查询用户对应的权限信息
         List<String> permissions = new ArrayList<>(menuMapper.selectPermsByUserId(user.getId()));
-
-
 
         return new CustomUserDetails(user,permissions);
     }

@@ -1,5 +1,6 @@
 package com.ldx.JWTsecurity;
 
+import com.alibaba.fastjson.JSONArray;
 import com.ldx.JWTsecurity.mapper.MenuMapper;
 import com.ldx.JWTsecurity.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
@@ -32,5 +33,10 @@ public class ApplicationTest {
     @Test
     public void test03() {
         menuMapper.selectPermsByUserId(1L).stream().forEach(System.out::println);
+    }
+    @Test
+    public void test04() {
+        JSONArray objects = JSONArray.parseArray("[{\"salary1\":\"213\",\"salary2\":\"321\",\"salary3\":\"123\"}]");
+        System.out.println("objects = " + objects);
     }
 }
